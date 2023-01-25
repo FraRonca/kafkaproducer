@@ -39,4 +39,14 @@ public class SendMessageService {
 
         kafkaTemplate.send(message);
     }
+
+    public void sendMessage3(String msg) {
+        Message<String> message = MessageBuilder.withPayload(msg)
+                .setHeader(KafkaHeaders.TOPIC, newTopic.name())
+                .setHeader(KafkaHeaders.PARTITION_ID, 1)
+                .setHeader(KafkaHeaders.MESSAGE_KEY, "key3")
+                .build();
+
+        kafkaTemplate.send(message);
+    }
 }
